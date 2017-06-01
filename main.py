@@ -70,15 +70,19 @@ def characterGen():
 	
 def worldGen():
 
-		prefixChoice = r.randint(0, 180)
-		vowelChoice = r.randint(0, 4)
-		suffixChoice = r.randint(0, 54)
+	prefixChoice = r.randint(0, 180)
+	vowelChoice = r.randint(0, 4)
+	suffixChoice = r.randint(0, 54)
 		
-		return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice]
+	return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice]
 
+def cls():
+	
+	sp.call('cls', shell = True)
 
 while True:
 
+	tmp = cls()
 	cmd = input(">> ")
 
 	if cmd == "create person" or cmd == "cp":
@@ -90,12 +94,13 @@ while True:
 		
 		filename = worldName + ".dat"
 		worldfile = open(filename, "w")
+		worldfile.close()
 		
 		worldCreated = True
 		
 	while worldCreated == True:
 	
-		tmp = sp.call('cls', shell = True)
+		tmp = cls()
 
 		print("The World of " + worldName)
 		print("")
@@ -119,5 +124,16 @@ while True:
 				
 				worldfile.write("hero")
 				worldfile.write(heroName)
+			
+			else:
 				
+				print("Error")
+				break
+		
+		worldfile = open(filename, "r")
+		
+		#if (cmd == "begin story" or cmd == "bs") and worldfile.read(1) == "hero":
+			
+			
+		
 				
