@@ -48,6 +48,8 @@ vowelCount = 5
 comboCount = prefixCount * vowelCount * suffixCount
 comboCountTitle = comboCount * titleCount
 
+worldCreated = False
+
 print ("Prefixes: ", prefixCount)
 print ("Suffixes: ", suffixCount)
 print ("Titles: ", titleCount)
@@ -57,23 +59,60 @@ input("Press any key to continue.")
 
 tmp = sp.call('cls', shell = True)
 
+def characterGen():
+	
+	prefixChoice = r.randint(0, 180) 
+	vowelChoice = r.randint(0, 4)
+	suffixChoice = r.randint(0, 54)
+	titleChoice = r.randint(0, 21)
+	
+	return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " " + "the" + " " + title[titleChoice]
+	
+def worldGen():
+
+		prefixChoice = r.randint(0, 180)
+		vowelChoice = r.randint(0, 4)
+		suffixChoice = r.randint(0, 54)
+		
+		return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice]
+
+
 while True:
 
 	cmd = input(">> ")
 
 	if cmd == "create person" or cmd == "cp":
-		prefixChoice = r.randint(0, 180) 
-		vowelChoice = r.randint(0, 4)
-		suffixChoice = r.randint(0, 54)
-		titleChoice = r.randint(0, 21)
-	
-		name = prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " " + "the" + " " + title[titleChoice]
+		
+		name = characterGen()
 		print(name)
 
 	if cmd == "create world" or cmd == "cw":
-		prefixChoice = r.randint(0, 180)
-		vowelChoice = r.randint(0, 4)
-		suffixChoice = r.randint(0, 54)
 		
-		worldName = prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice]
+		filename = worldName + ".dat"
+		worldfile = open(filename, "w")
 		
+		worldCreated = True
+		
+	while worldCreated == True:
+	
+		tmp = sp.call('cls', shell = True)
+
+		print("The World of " + worldName)
+		print("")
+		cmd = input(">> ")
+		
+		if cmd == "create hero" or cmd == "ch":
+		
+			print("Custom or random name?")
+			nameQ = input(">> ")
+			
+			if nameQ == "custom":
+				
+				heroName = input(">> ")
+				
+				worldfile.write("hero")
+				worldfile.write(heroName)
+			
+			#elif nameQ == "random":
+				
+				
