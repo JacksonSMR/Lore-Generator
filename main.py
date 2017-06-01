@@ -113,6 +113,11 @@ while True:
 				worldfile.write("hero")
 				worldfile.write(heroName)
 			
-			#elif nameQ == "random":
+			elif nameQ == "random":
+				
+				heroName = characterGen()
+				
+				worldfile.write("hero")
+				worldfile.write(heroName)
 				
 				
