@@ -34,15 +34,14 @@ suffix = ["lome", "mir", "ndil", "in", "th", "rn", "un", "thas", "cil", "ll", "l
 title = ["Bold", "Strong", "Wise", "Kind", "Cruel", "Strange", "Temperate", "Traveller",
 "Competitive", "Brave", "Honourable", "Deceitful", "Greedy", "Gluttonous", "Old", "Young",
 "Tall", "Short", "Stout", "Large", "Gallant", "Builder", "Painter", "Cleric", "Musical",
-"Enlightened", "Devious"]
-
-
+"Enlightened", "Devious", "Charming", "Decrepit", "Paranoid", "Mystical", "Soft-Hearted"]
 
 race = ["Elf", "Dwarf", "Human", "Halfling", "Orc"]
 
 prefixCount = len(prefix)
 suffixCount = len(suffix)
 titleCount = len(title)
+raceCount = 5
 vowelCount = 5
 
 comboCount = prefixCount * vowelCount * suffixCount
@@ -53,6 +52,7 @@ worldCreated = False
 print ("Prefixes: ", prefixCount)
 print ("Suffixes: ", suffixCount)
 print ("Titles: ", titleCount)
+print ("Races: ", raceCount)
 print ("Total unique names: ", comboCount)
 print ("Total unique names w/ titles: ", comboCountTitle)
 input("Press any key to continue.")
