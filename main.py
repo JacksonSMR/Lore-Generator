@@ -1,4 +1,4 @@
-#Lore Generator v1.0a
+#Lore Generator v1.0.2 alpha
 
 import ctypes
 import math
@@ -45,7 +45,7 @@ raceCount = 5
 vowelCount = 5
 
 comboCount = prefixCount * vowelCount * suffixCount
-comboCountTitle = comboCount * titleCount
+comboCountTotal = comboCount * titleCount * raceCount
 
 worldCreated = False
 
@@ -54,7 +54,7 @@ print ("Suffixes: ", suffixCount)
 print ("Titles: ", titleCount)
 print ("Races: ", raceCount)
 print ("Total unique names: ", comboCount)
-print ("Total unique names w/ titles: ", comboCountTitle)
+print ("Total unique names w/ titles and races: ", comboCountTotal)
 input("Press any key to continue.")
 
 tmp = sp.call('cls', shell = True)
@@ -65,8 +65,9 @@ def characterGen():
 	vowelChoice = r.randint(0, 4)
 	suffixChoice = r.randint(0, 54)
 	titleChoice = r.randint(0, 21)
+	raceChoice = r.randint(0, 4)
 	
-	return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " " + "the" + " " + title[titleChoice]
+	return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " the " + title[titleChoice] + ", " + race[raceChoice]
 	
 def worldGen():
 
@@ -75,6 +76,10 @@ def worldGen():
 	suffixChoice = r.randint(0, 54)
 		
 	return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice]
+
+def storyStart(worldName, heroName):
+	
+	
 
 def cls():
 	
@@ -113,7 +118,16 @@ while True:
 			
 			if nameQ == "custom":
 				
+				print("Enter name:")
 				heroName = input(">> ")
+				
+				print("Choose race:")
+				print("")
+				print("1: Elf")
+				print("2: Dwarf")
+				print("3: Human")
+				print("4: Halfling")
+				print("5: Orc")
 				
 				worldfile.write("hero")
 				worldfile.write(heroName)
@@ -121,7 +135,6 @@ while True:
 			elif nameQ == "random":
 				
 				heroName = characterGen()
-				
 				worldfile.write("hero")
 				worldfile.write(heroName)
 			
@@ -132,8 +145,12 @@ while True:
 		
 		worldfile = open(filename, "r")
 		
-		#if (cmd == "begin story" or cmd == "bs") and worldfile.read(1) == "hero":
+		if (cmd == "begin story" or cmd == "bs") and worldfile.read(1) == "hero":
 			
+			story = True
 			
 		
-				
+		while story == True:
+			
+			
+			
