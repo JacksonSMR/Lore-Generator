@@ -1,4 +1,4 @@
-#Lore Generator v1.0.2 alpha
+#Lore Generator v1.0.5 alpha
 
 import ctypes
 import math
@@ -40,6 +40,8 @@ race = ["Elf", "Dwarf", "Human", "Halfling", "Orc"]
 
 area = ["forest", "desert", "city", "cave"]
 
+story = []
+
 prefixCount = len(prefix)
 suffixCount = len(suffix)
 titleCount = len(title)
@@ -51,6 +53,9 @@ comboCount = prefixCount * vowelCount * suffixCount
 comboCountTotal = comboCount * titleCount * raceCount
 
 worldCreated = False
+story = False
+name = False
+charCreate = False
 
 print ("Prefixes: ", prefixCount)
 print ("Suffixes: ", suffixCount)
@@ -62,13 +67,18 @@ input("Press any key to continue.")
 
 tmp = sp.call('cls', shell = True)
 
-def characterGen():
+def characterGen(charCreate):
 	
 	prefixChoice = r.randint(0, 180) 
 	vowelChoice = r.randint(0, 4)
 	suffixChoice = r.randint(0, 54)
 	titleChoice = r.randint(0, 21)
 	raceChoice = r.randint(0, 4)
+	
+	if charCreate == True:
+		
+		heroRace = raceChoice
+		charCreate = False
 	
 	return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " the " + title[titleChoice] + ", " + race[raceChoice]
 	
@@ -100,7 +110,13 @@ def storyStart(worldName, heroName):
 	print("")
 	input("Press key to continue")
 	
+	story.append("Began in the ", areaChoice, " of ", areaName)
+	
 	clear()
+	
+	return
+
+def badEvent(worldName, heroName
 
 def clear():
 	
@@ -113,24 +129,32 @@ while True:
 
 	if cmd == "create person" or cmd == "cp":
 		
-		name = characterGen()
+		name = characterGen(False)
 		print(name)
+		print("")
+		input("Press key to continue")
 
 	if cmd == "create world" or cmd == "cw":
 		
-		filename = worldName + ".dat"
-		worldfile = open(filename, "w")
-		worldfile.close()
-		
 		worldCreated = True
+		worldName = worldGen()
 		
 	while worldCreated == True:
 	
-		tmp = cls()
+		clear()
 
-		print("The World of " + worldName)
-		print("")
-		cmd = input(">> ")
+		if name == False:
+		
+			print("The World of " + worldName)
+			print("")
+			cmd = input(">> ")
+			
+		if name == True:
+		
+			print("The World of " + worldName)
+			print("")
+			print("You are", heroName, ", the ", heroRace)
+			cmd = input(">> ")
 		
 		if cmd == "create hero" or cmd == "ch":
 		
@@ -174,29 +198,31 @@ while True:
 				
 				else:
 					
+					print("Error")
 					break
-					
-				worldfile.write("hero")
-				worldfile.write(heroName, heroRace)
 				
-				print("You are ", heroName, ", the ", heroRace)
+				name = True
+				
+				print("You are", heroName, ", the ", heroRace)
+				print("")
+				input("Press key to continue")
 			
 			elif nameQ == "random":
 				
-				heroName = characterGen()
-				worldfile.write("hero")
-				worldfile.write(heroName)
+				heroName = characterGen(True)
+				
+				name = True
 				
 				print("You are ", heroName, ".")
+				print("")
+				input("Press key to continue")
 			
 			else:
 				
 				print("Error")
 				break
 		
-		worldfile = open(filename, "r")
-		
-		if (cmd == "begin story" or cmd == "bs") and worldfile.read(1) == "hero":
+		if (cmd == "begin story" or cmd == "bs"):
 			
 			story = True
 			x = 0
@@ -206,5 +232,18 @@ while True:
 			
 			if x == 0:
 				
-				storyStart()
+				storyStart(worldName, heroName)
+				x += 1
+			
+			if x > 0:
+				
+				chance = r.randint(1, 2)
+				
+				if chance == 1:
+					
+					badEvent(worldName, heroName)
+				
+				if chance == 2:
+					
+					goodEvent(worldName, heroName)
 			
