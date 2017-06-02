@@ -38,9 +38,12 @@ title = ["Bold", "Strong", "Wise", "Kind", "Cruel", "Strange", "Temperate", "Tra
 
 race = ["Elf", "Dwarf", "Human", "Halfling", "Orc"]
 
+area = ["forest", "desert", "city", "cave"]
+
 prefixCount = len(prefix)
 suffixCount = len(suffix)
 titleCount = len(title)
+areaCount = len(area)
 raceCount = 5
 vowelCount = 5
 
@@ -79,15 +82,33 @@ def worldGen():
 
 def storyStart(worldName, heroName):
 	
+	print("Welcome, ", heroName, " to the world of ", worldName, ".")
+	print("")
+	input("Press key to continue")
 	
+	clear()
+	
+	areaRand = r.randint(0, 3)
+	areaChoice = area[areaRand]
+	
+	prefixChoice = r.randint(0, 180)
+	vowelChoice = r.randint(0, 4)
+	suffixChoice = r.randint(0, 54)
+	areaName = prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice]
+	
+	print("You begin in the ", areaChoice, " of ", areaName, ".")
+	print("")
+	input("Press key to continue")
+	
+	clear()
 
-def cls():
+def clear():
 	
 	sp.call('cls', shell = True)
 
 while True:
 
-	tmp = cls()
+	tmp = clear()
 	cmd = input(">> ")
 
 	if cmd == "create person" or cmd == "cp":
@@ -129,14 +150,44 @@ while True:
 				print("4: Halfling")
 				print("5: Orc")
 				
+				userRace = input(">> ")
+				
+				if userRace == "1":
+					
+					heroRace = "Elf"
+				
+				elif userRace == "2":
+					
+					heroRace = "Dwarf"
+				
+				elif userRace == "3":
+					
+					heroRace = "Human"
+				
+				elif userRace == "4":
+					
+					heroRace = "Halfling"
+				
+				elif userRace == "5":
+					
+					heroRace = "Orc"
+				
+				else:
+					
+					break
+					
 				worldfile.write("hero")
-				worldfile.write(heroName)
+				worldfile.write(heroName, heroRace)
+				
+				print("You are ", heroName, ", the ", heroRace)
 			
 			elif nameQ == "random":
 				
 				heroName = characterGen()
 				worldfile.write("hero")
 				worldfile.write(heroName)
+				
+				print("You are ", heroName, ".")
 			
 			else:
 				
@@ -148,9 +199,12 @@ while True:
 		if (cmd == "begin story" or cmd == "bs") and worldfile.read(1) == "hero":
 			
 			story = True
+			x = 0
 			
 		
 		while story == True:
 			
-			
+			if x == 0:
+				
+				storyStart()
 			
