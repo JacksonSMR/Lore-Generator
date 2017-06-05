@@ -1,4 +1,6 @@
-#Lore Generator v1.0.5 alpha
+#Lore Generator v1.0.6 alpha
+
+print("Loading... ")
 
 import ctypes
 import math
@@ -38,14 +40,18 @@ title = ["Bold", "Strong", "Wise", "Kind", "Cruel", "Strange", "Temperate", "Tra
 
 race = ["Elf", "Dwarf", "Human", "Halfling", "Orc"]
 
-area = ["forest", "desert", "city", "cave"]
+area = ["Forest", "Desert", "City", "Caves", "Plains"]
 
-story = []
+collective = ["City", "Army", "Horde", "Duchy", "Kingdom", "Empire"]
+
+action = ["attacks", "invades", "falls to", "surrenders to", "makes peace with", "forms from"]
 
 prefixCount = len(prefix)
 suffixCount = len(suffix)
 titleCount = len(title)
 areaCount = len(area)
+collectiveCount = len(collective)
+actionCount = len(action)
 raceCount = 5
 vowelCount = 5
 
@@ -55,7 +61,13 @@ comboCountTotal = comboCount * titleCount * raceCount
 worldCreated = False
 story = False
 name = False
+nameSelect = False
 charCreate = False
+historyDone = False
+historyCreated = False
+viewOver = False
+
+tmp = sp.call('cls', shell = True)
 
 print ("Prefixes: ", prefixCount)
 print ("Suffixes: ", suffixCount)
@@ -82,6 +94,235 @@ def characterGen(charCreate):
 	
 	return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " the " + title[titleChoice] + ", " + race[raceChoice]
 	
+def newNameGen():
+	
+	print("What is your name?")
+	regName = input(">> ")
+	
+	nameSelect = True
+	x = 0
+	
+	while nameSelect == True:
+	
+		if regName[x] == "a":
+		
+			prefixChoice = r.randint(0, 30)
+			vowelChoice = r.randint(0, 4)
+			suffixChoice = r.randint(0, 54)
+			titleChoice = r.randint(0, 21)
+			raceChoice = r.randint(0, 4)
+			
+			return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " the " + title[titleChoice] + ", " + race[raceChoice]
+	
+		elif regName[x] == "b":
+		
+			prefixChoice = r.randint(31, 52)
+			vowelChoice = r.randint(0, 4)
+			suffixChoice = r.randint(0, 54)
+			titleChoice = r.randint(0, 21)
+			raceChoice = r.randint(0, 4)
+			
+			return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " the " + title[titleChoice] + ", " + race[raceChoice]
+	
+		elif regName[x] == "c":
+		
+			prefixChoice = r.randint(53, 71)
+			vowelChoice = r.randint(0, 4)
+			suffixChoice = r.randint(0, 54)
+			titleChoice = r.randint(0, 21)
+			raceChoice = r.randint(0, 4)
+			
+			return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " the " + title[titleChoice] + ", " + race[raceChoice]
+	
+		elif regName[x] == "d":
+		
+			prefixChoice = r.randint(72, 87)
+			vowelChoice = r.randint(0, 4)
+			suffixChoice = r.randint(0, 54)
+			titleChoice = r.randint(0, 21)
+			raceChoice = r.randint(0, 4)
+			
+			return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " the " + title[titleChoice] + ", " + race[raceChoice]
+	
+		elif regName[x] == "e":
+		
+			prefixChoice = r.randint(88, 104)
+			vowelChoice = r.randint(0, 4)
+			suffixChoice = r.randint(0, 54)
+			titleChoice = r.randint(0, 21)
+			raceChoice = r.randint(0, 4)
+			
+			return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " the " + title[titleChoice] + ", " + race[raceChoice]
+	
+		elif regName[x] == "f":
+		
+			prefixChoice = r.randint(105, 113)
+			vowelChoice = r.randint(0, 4)
+			suffixChoice = r.randint(0, 54)
+			titleChoice = r.randint(0, 21)
+			raceChoice = r.randint(0, 4)
+			
+			return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " the " + title[titleChoice] + ", " + race[raceChoice]
+	
+		elif regName[x] == "g":
+		
+			prefixChoice = r.randint(114, 125)
+			vowelChoice = r.randint(0, 4)
+			suffixChoice = r.randint(0, 54)
+			titleChoice = r.randint(0, 21)
+			raceChoice = r.randint(0, 4)
+			
+			return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " the " + title[titleChoice] + ", " + race[raceChoice]
+	
+		elif regName[x] == "h":
+		
+			prefixChoice = r.randint(126, 131)
+			vowelChoice = r.randint(0, 4)
+			suffixChoice = r.randint(0, 54)
+			titleChoice = r.randint(0, 21)
+			raceChoice = r.randint(0, 4)
+			
+			return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " the " + title[titleChoice] + ", " + race[raceChoice]
+	
+		elif regName[x] == "i":
+		
+			prefixChoice = r.randint(132, 134)
+			vowelChoice = r.randint(0, 4)
+			suffixChoice = r.randint(0, 54)
+			titleChoice = r.randint(0, 21)
+			raceChoice = r.randint(0, 4)
+			
+			return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " the " + title[titleChoice] + ", " + race[raceChoice]
+		
+		elif regName[x] == "l":
+		
+			prefixChoice = 135
+			vowelChoice = r.randint(0, 4)
+			suffixChoice = r.randint(0, 54)
+			titleChoice = r.randint(0, 21)
+			raceChoice = r.randint(0, 4)
+			
+			return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " the " + title[titleChoice] + ", " + race[raceChoice]
+		
+		elif regName[x] == "m":
+		
+			prefixChoice = r.randint(136, 141)
+			vowelChoice = r.randint(0, 4)
+			suffixChoice = r.randint(0, 54)
+			titleChoice = r.randint(0, 21)
+			raceChoice = r.randint(0, 4)
+			
+			return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " the " + title[titleChoice] + ", " + race[raceChoice]
+		
+		elif regName[x] == "n":
+		
+			prefixChoice = r.randint(142, 146)
+			vowelChoice = r.randint(0, 4)
+			suffixChoice = r.randint(0, 54)
+			titleChoice = r.randint(0, 21)
+			raceChoice = r.randint(0, 4)
+			
+			return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " the " + title[titleChoice] + ", " + race[raceChoice]
+		
+		elif regName[x] == "o":
+		
+			prefixChoice = r.randint(147, 148)
+			vowelChoice = r.randint(0, 4)
+			suffixChoice = r.randint(0, 54)
+			titleChoice = r.randint(0, 21)
+			raceChoice = r.randint(0, 4)
+			
+			return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " the " + title[titleChoice] + ", " + race[raceChoice]
+		
+		elif regName[x] == "p":
+		
+			prefixChoice = r.randint(149, 152)
+			vowelChoice = r.randint(0, 4)
+			suffixChoice = r.randint(0, 54)
+			titleChoice = r.randint(0, 21)
+			raceChoice = r.randint(0, 4)
+			
+			return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " the " + title[titleChoice] + ", " + race[raceChoice]
+		
+		elif regName[x] == "r":
+		
+			prefixChoice = r.randint(153, 160)
+			vowelChoice = r.randint(0, 4)
+			suffixChoice = r.randint(0, 54)
+			titleChoice = r.randint(0, 21)
+			raceChoice = r.randint(0, 4)
+			
+			return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " the " + title[titleChoice] + ", " + race[raceChoice]
+		
+		elif regName[x] == "s":
+		
+			prefixChoice = r.randint(161, 165)
+			vowelChoice = r.randint(0, 4)
+			suffixChoice = r.randint(0, 54)
+			titleChoice = r.randint(0, 21)
+			raceChoice = r.randint(0, 4)
+			
+			return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " the " + title[titleChoice] + ", " + race[raceChoice]
+		
+		elif regName[x] == "t":
+		
+			prefixChoice = r.randint(166, 170)
+			vowelChoice = r.randint(0, 4)
+			suffixChoice = r.randint(0, 54)
+			titleChoice = r.randint(0, 21)
+			raceChoice = r.randint(0, 4)
+			
+			return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " the " + title[titleChoice] + ", " + race[raceChoice]
+		
+		elif regName[x] == "u":
+		
+			prefixChoice = r.randint(171, 173)
+			vowelChoice = r.randint(0, 4)
+			suffixChoice = r.randint(0, 54)
+			titleChoice = r.randint(0, 21)
+			raceChoice = r.randint(0, 4)
+			
+			return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " the " + title[titleChoice] + ", " + race[raceChoice]
+		
+		elif regName[x] == "v":
+		
+			prefixChoice = r.randint(174, 178)
+			vowelChoice = r.randint(0, 4)
+			suffixChoice = r.randint(0, 54)
+			titleChoice = r.randint(0, 21)
+			raceChoice = r.randint(0, 4)
+			
+			return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " the " + title[titleChoice] + ", " + race[raceChoice]
+		
+		elif regName[x] == "w":
+		
+			prefixChoice = r.randint(179, 180)
+			vowelChoice = r.randint(0, 4)
+			suffixChoice = r.randint(0, 54)
+			titleChoice = r.randint(0, 21)
+			raceChoice = r.randint(0, 4)
+			
+			return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " the " + title[titleChoice] + ", " + race[raceChoice]
+		
+		elif regName[x] == "z":
+		
+			prefixChoice = 181
+			vowelChoice = r.randint(0, 4)
+			suffixChoice = r.randint(0, 54)
+			titleChoice = r.randint(0, 21)
+			raceChoice = r.randint(0, 4)
+			
+			return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice] + " the " + title[titleChoice] + ", " + race[raceChoice]
+		
+		else:
+			
+			x += 1
+			
+			if x > len(regName):
+				
+				print("Error")
+				break
+	
 def worldGen():
 
 	prefixChoice = r.randint(0, 180)
@@ -90,6 +331,48 @@ def worldGen():
 		
 	return prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice]
 
+	
+def historyGen(worldName):
+
+	year = 1
+	history = []
+	
+	print("How many years of history shall be generated?")
+	endYear = input(">> ")
+	
+	while year <= int(endYear):
+	
+		collectiveChoice = r.randint(0, 5)
+		prefixChoice = r.randint(0, 180) 
+		vowelChoice = r.randint(0, 4)
+		suffixChoice = r.randint(0, 54)
+		
+		main = "The " + collective[collectiveChoice] + " of " + prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice]
+		
+		collectiveChoice = r.randint(0, 5)
+		prefixChoice = r.randint(0, 180) 
+		vowelChoice = r.randint(0, 4)
+		suffixChoice = r.randint(0, 54)
+		
+		next = "The " + collective[collectiveChoice] + " of " + prefix[prefixChoice] + vowel[vowelChoice] + suffix[suffixChoice]
+		
+		actionChoice = r.randint(0, 5)
+		
+		historyPart = main + " " + action[actionChoice] + " " + next
+		
+		print (str(year) + ": " + historyPart)
+		
+		history.append(historyPart)
+			
+		year += 1
+	
+	print ("Generation complete.")
+	print ("Database constructed.")
+			
+	historyCreated = True
+			
+	return history
+		
 def storyStart(worldName, heroName):
 	
 	print("Welcome, ", heroName, " to the world of ", worldName, ".")
@@ -110,13 +393,7 @@ def storyStart(worldName, heroName):
 	print("")
 	input("Press key to continue")
 	
-	story.append("Began in the ", areaChoice, " of ", areaName)
-	
 	clear()
-	
-	return
-
-def badEvent(worldName, heroName
 
 def clear():
 	
@@ -133,6 +410,13 @@ while True:
 		print(name)
 		print("")
 		input("Press key to continue")
+		
+	if cmd == "make name" or cmd == "mn":
+	
+		name = newNameGen()
+		print(name)
+		print("")
+		input("Press key to continue")
 
 	if cmd == "create world" or cmd == "cw":
 		
@@ -141,7 +425,7 @@ while True:
 		
 	while worldCreated == True:
 	
-		clear()
+		tmp = clear()
 
 		if name == False:
 		
@@ -156,7 +440,34 @@ while True:
 			print("You are", heroName, ", the ", heroRace)
 			cmd = input(">> ")
 		
-		if cmd == "create hero" or cmd == "ch":
+		if cmd == "create history" or cmd == "chis":
+			
+			totalLore = historyGen(worldName)
+			
+			print("History created.")
+			print("")
+			input("Press key to continue")
+		
+		if (cmd == "view history" or cmd == "vh") and historyCreated == True:
+		
+			while viewOver == False:
+			
+				tmp = clear()
+				
+				print("Enter year")
+				cmd = input(">> ")
+				
+				if cmd == "over":
+					
+					viewOver = True
+		
+				year = str(cmd)
+				
+				print(history[year])
+				print("")
+				input("Press key to continue")
+				
+		if cmd == "create hero" or cmd == "chero":
 		
 			print("Custom or random name?")
 			nameQ = input(">> ")
@@ -221,29 +532,3 @@ while True:
 				
 				print("Error")
 				break
-		
-		if (cmd == "begin story" or cmd == "bs"):
-			
-			story = True
-			x = 0
-			
-		
-		while story == True:
-			
-			if x == 0:
-				
-				storyStart(worldName, heroName)
-				x += 1
-			
-			if x > 0:
-				
-				chance = r.randint(1, 2)
-				
-				if chance == 1:
-					
-					badEvent(worldName, heroName)
-				
-				if chance == 2:
-					
-					goodEvent(worldName, heroName)
-			
